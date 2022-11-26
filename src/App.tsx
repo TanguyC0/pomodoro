@@ -18,7 +18,7 @@ function App() {
         return () => clearInterval(interval);
     }, [time, isRunning]);
 
-    const onOff = (value: number) => {
+    const onOff = (value: number):void => {
         console.log("start");
         if (value === -1) {
             ("");

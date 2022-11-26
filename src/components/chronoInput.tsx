@@ -4,7 +4,7 @@ export default function ChronoInput({
     value,
     seconds,
 }: {
-    value: number;
+    value: (value: number) => void;
     seconds: number;
 }): JSX.Element {
     const minutesRef = useRef<HTMLInputElement>(null);
@@ -40,7 +40,6 @@ export default function ChronoInput({
         secondsRef.current.value = "0";
     };
 
-    console.log(seconds);
     return (
         <div>
             <input

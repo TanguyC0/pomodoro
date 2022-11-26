@@ -5,7 +5,7 @@ export default function Chrono({
     action,
 }: {
     seconds: number;
-    action: number;
+    action: (value: number) => void;
 }): JSX.Element {
     const minutes: number = Math.floor(seconds / 60);
     const secondsLeft: number = seconds % 60;
