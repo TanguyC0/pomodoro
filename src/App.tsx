@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.css";
+import React, {startTransition, useEffect, useState} from "react";
+import Chrono from "./components/chrono";
+import ChronoInput from "./components/chronoInput";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [time, settime] = useState(0);
+    const [isRunning, setisRunning] = useState(false);
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (time > 0 && isRunning === true) {
+                settime(time - 1);
+            } else {
+                setisRunning(false);
+            }
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [time, isRunning]);
+
+    const onOff = (value: number) => {
+        console.log("start");
+        if (value === -1) {
+            ("");
+        } else if (value === -2) {
+            settime(0);
+        } else {
+            settime(value);
+        }
+        setisRunning(!isRunning);
+    };
+
+    return (
+        <div className="App">
+            <h1 className="text-rose-800">React Chrono</h1>
+            {isRunning === false && time == 0 ? (
+                <ChronoInput value={onOff} seconds={time} />
+            ) : (
+                <Chrono seconds={time} action={onOff} />
+            )}
+        </div>
+    );
 }
 
-export default App
+export default App;
