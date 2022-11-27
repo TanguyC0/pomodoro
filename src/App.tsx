@@ -1,6 +1,7 @@
 import React, {startTransition, useEffect, useState} from "react";
 import Chrono from "./components/chrono";
 import ChronoInput from "./components/chronoInput";
+import Modal from "./components/modal";
 
 function App() {
     const [time, settime] = useState(0);
@@ -30,6 +31,7 @@ function App() {
     };
 
     return (
+        <>
         <div className="flex flex-col items-center justify-between min-h-screen">
             <h1 className="pt-3 text-5xl font-bold text-accent">React timer</h1>
             {isRunning === false && time == 0 ? (
@@ -37,8 +39,19 @@ function App() {
             ) : (
                 <Chrono seconds={time} action={onOff} />
             )}
+            {/* {
+            isRunning === false && time == 0 ? (
+                    <input type="checkbox" id="my-modal-4" className="modal-toggle" defaultChecked={true}/>
+            ) : (
+                <></>
+            )
+            } */}
+
+{/* <label htmlFor="my-modal-4" className="btn">open modal</label> */}
+
             <div></div>
         </div>
+        </>
     );
 }
 
