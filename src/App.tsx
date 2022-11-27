@@ -1,4 +1,3 @@
-import "./App.css";
 import React, {startTransition, useEffect, useState} from "react";
 import Chrono from "./components/chrono";
 import ChronoInput from "./components/chronoInput";
@@ -18,7 +17,7 @@ function App() {
         return () => clearInterval(interval);
     }, [time, isRunning]);
 
-    const onOff = (value: number):void => {
+    const onOff = (value: number): void => {
         console.log("start");
         if (value === -1) {
             ("");
@@ -31,13 +30,14 @@ function App() {
     };
 
     return (
-        <div className="App">
-            <h1 className="text-rose-800">React Chrono</h1>
+        <div className="flex flex-col items-center justify-between min-h-screen">
+            <h1 className="pt-3 text-5xl font-bold text-accent">React timer</h1>
             {isRunning === false && time == 0 ? (
                 <ChronoInput value={onOff} seconds={time} />
             ) : (
                 <Chrono seconds={time} action={onOff} />
             )}
+            <div></div>
         </div>
     );
 }

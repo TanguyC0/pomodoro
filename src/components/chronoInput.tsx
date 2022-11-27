@@ -40,23 +40,74 @@ export default function ChronoInput({
         secondsRef.current.value = "0";
     };
 
+    // return (
+    //     <div>
+    //         <input
+    //             defaultValue={Math.floor(seconds / 60).toString()}
+    //             type="text"
+    //             ref={minutesRef}
+    //         />
+    //         :
+    //         <input
+    //             defaultValue={(seconds % 60).toString()}
+    //             type="text"
+    //             ref={secondsRef}
+    //         />
+    //         <button onClick={() => updateTimer(60)}>+</button>
+    //         <button onClick={() => setTime()}>start</button>
+    //         <button onClick={() => resetTimer()}>reset</button>
+    //         <button onClick={() => updateTimer(-60)}>-</button>
+    //     </div>
+    // );
+
     return (
         <div>
-            <input
-                defaultValue={Math.floor(seconds / 60).toString()}
-                type="text"
-                ref={minutesRef}
-            />
-            :
-            <input
-                defaultValue={(seconds % 60).toString()}
-                type="text"
-                ref={secondsRef}
-            />
-            <button onClick={() => updateTimer(60)}>+</button>
-            <button onClick={() => setTime()}>start</button>
-            <button onClick={() => resetTimer()}>reset</button>
-            <button onClick={() => updateTimer(-60)}>-</button>
+            <div className="flex justify-center">
+                <div className="flex flex-col justify-center items-center mx-2 bg-neutral rounded-box w-36 h-36">
+                    <input
+                        defaultValue={Math.floor(seconds / 60).toString()}
+                        type="text"
+                        ref={minutesRef}
+                        className="font-mono text-5xl mb-6 w-20 text-center"
+                    />
+                    minutes
+                </div>
+                <div className="flex flex-col justify-center items-center mx-2 bg-neutral rounded-box w-36 h-36">
+                    <input
+                        defaultValue={(seconds % 60).toString()}
+                        type="text"
+                        ref={secondsRef}
+                        className="font-mono text-5xl mb-6 w-20 text-center"
+                    />
+                    seconds
+                </div>
+            </div>
+            <div className="flex justify-center mt-6">
+                <input
+                    type="button"
+                    value="+"
+                    onClick={() => updateTimer(60)}
+                    className="btn btn-outline btn-warning flex flex-col justify-center items-center mx-2 bg-neutral w-14 h-10"
+                />
+                <input
+                    type="button"
+                    value="start"
+                    onClick={() => setTime()}
+                    className="btn btn-outline btn-success flex flex-col justify-center items-center mx-2 bg-neutral w-20 h-10"
+                />
+                <input
+                    type="button"
+                    value="reset"
+                    onClick={() => resetTimer()}
+                    className="btn btn-outline btn-error flex flex-col justify-center items-center mx-2 bg-neutral w-20 h-10"
+                />
+                <input
+                    type="button"
+                    value="-"
+                    onClick={() => updateTimer(-60)}
+                    className="btn btn-outline btn-warning flex flex-col justify-center items-center mx-2 bg-neutral w-14 h-10"
+                />
+            </div>
         </div>
     );
 }
